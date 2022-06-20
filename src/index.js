@@ -10,6 +10,7 @@ import { BrowserRouter } from "react-router-dom";
 import reducer from "./context/reducer";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
+
 root.render(
   <BrowserRouter>
     <StateProvider initialState={initialState} reducer={reducer}>

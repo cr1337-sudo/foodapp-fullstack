@@ -19,12 +19,11 @@ function App() {
   };
   useEffect(() => {
     fetchData();
-  }, [foodItems]);
+  }, []);
   return (
     <AnimatePresence exitBeforeEnter>
       <div className="w-full h-auto flex flex-col bg-primary">
         <Header />
-
         <main className="mt-14 md:mt-24 p-6 w-full">
           <Routes>
             <Route path="/*" element={<MainContainer />} />

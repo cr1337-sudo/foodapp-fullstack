@@ -107,6 +107,7 @@ const CreateContainer = () => {
       } else {
         const data = {
           id: `${Date.now()}`,
+          title,
           imageUrl: imageAsset,
           category,
           calories,
