@@ -2,12 +2,14 @@ import React, { useEffect } from "react";
 import { motion } from "framer-motion";
 import { MdShoppingBasket } from "react-icons/md";
 import { useRef } from "react";
+import NotFound from "../img/NotFound.svg";
 
 const RowContainer = ({ scrollValue, flag, data }) => {
   const rowContainer = useRef(null);
   useEffect(() => {
     rowContainer.current.scrollLeft += scrollValue;
   }, [scrollValue]);
+
   return (
     <div
       ref={rowContainer}
@@ -17,10 +19,12 @@ const RowContainer = ({ scrollValue, flag, data }) => {
           : "overflow-x-hidden flex flex-wrap"
       }`}
     >
-      {data &&
+      {data && data.length > 0 ? (
         data.map((item) => (
           <div
-            className=" w-300 md:w-340  h-300 my-12  rounded-lg p-2 shadow-md backdrop-blur-lg hover:shadow-lg"
+            className=" w-300 md:w-340  h-[240px] my-12  rounded-lg p-2 shadow-md backdrop-blur-lg hover:shadow-lg
+            flex flex-col items-center justify-between
+            "
             key={item.id}
           >
             <div className="w-full flex items-center justify-between ">
@@ -50,7 +54,13 @@ const RowContainer = ({ scrollValue, flag, data }) => {
               </div>
             </div>
           </div>
-        ))}
+        ))
+      ) : (
+        <div className="w-full flex  flex-col items-center justify-center">
+          <img src={NotFound} alt="Not found" className="h-64" />
+          <p className="text-xl my-2 text-gray-800">Items not available </p>
+        </div>
+      )}
     </div>
   );
 };

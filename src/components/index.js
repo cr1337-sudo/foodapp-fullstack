@@ -4,6 +4,8 @@ import CreateContainer from "../containers/CreateContainer";
 import HomeContainer from "../containers/HomeContainer";
 import Loader from "./Loader/Loader";
 import RowContainer from "../containers/RowContainer";
+import MenuContainer from "../containers/MenuContainer";
+import CartContainer from "../containers/CartContainer";
 
 export {
   Header,
@@ -12,4 +14,6 @@ export {
   HomeContainer,
   Loader,
   RowContainer,
+  MenuContainer,
+  CartContainer,
 };

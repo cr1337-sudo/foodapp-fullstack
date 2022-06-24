@@ -1,4 +1,9 @@
-import { HomeContainer, RowContainer } from "../components";
+import {
+  CartContainer,
+  HomeContainer,
+  MenuContainer,
+  RowContainer,
+} from "../components";
 import { motion } from "framer-motion";
 import { MdChevronLeft, MdChevronRight } from "react-icons/md";
 import { UseStateValue } from "../context/StateProvider";
@@ -11,7 +16,7 @@ const MainContainer = () => {
   return (
     <div className="w-full h-auto flex flex-col items-center justify-center">
       <HomeContainer />
-      <section className="w-full my-6">
+      <section className="w-full  mt-32 lg:my-6">
         <div className="w-full flex items-center justify-between">
           <p className="text-lg font-semibold capitalize text-gray-900 relative before:absolute before:rounded-lg before:content before:w-20 before:h-1 before:bottom-0 before:left-0 before:bg-gradient-to-tr from-orange-400 to-orange-600 transition-all ease-in-out duration-100 ">
             Our fresh & healthy fruits
@@ -39,6 +44,10 @@ const MainContainer = () => {
           data={foodItems?.filter((n) => n.category === "chicken")}
         />
       </section>
+
+      <MenuContainer />
+
+      <CartContainer />
     </div>
   );
 };
