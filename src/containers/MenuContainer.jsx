@@ -10,25 +10,27 @@ const MenuContainer = () => {
   const [{ foodItems }, dispatch] = UseStateValue();
   useEffect(() => {}, [filter]);
   return (
-    <section w-full my-6 id="menu">
+    <section className="w-full my-6" id="menu">
       <div className="w-full flex flex-col items-center justify-center">
         <p className="text-lg font-semibold capitalize text-gray-900 relative before:absolute before:rounded-lg before:content before:w-16 before:h-1 before:bottom-0 before:left-0 before:bg-gradient-to-tr from-orange-400 to-orange-600 transition-all ease-in-out duration-100 ">
           Our Hot Dishes
         </p>
-        <div className="w-full flex items-center justify-start lg:justify-center gap-8 py-6 overflow-x-scroll scrollbar-none">
+        <div className="w-full flex items-center md:justify-start justify-center lg:justify-center flex-wrap gap-5 py-6 overflow-x-scroll scrollbar-none">
           {categories &&
             categories.map((category) => (
               <motion.div
                 whileTap={{ scale: 0.75 }}
-                className={`group w-24 min-w-[94px] ${
-                  filter === category.urlParamName ? "bg-red-600 " : "bg-card"
-                } bg-card h-28 cursor-pointer rounded-lg drop-shadow-lg flex flex-col gap-3 items-center justify-center hover:bg-red-600 `}
+                className={`group w-24 min-w-[94px] hover:bg-redBgCard ${
+                  filter === category.urlParamName && "bg-redBgCard"
+                } bg-card h-28 cursor-pointer rounded-lg drop-shadow-lg flex flex-col gap-3 items-center justify-center `}
                 key={category.id}
                 onClick={() => setFilter(category.urlParamName)}
               >
                 <div
                   className={`w-10 h-10 rounded-full ${
-                    filter === category.urlParamName ? "bg-card" : "bg-red-600"
+                    filter === category.urlParamName
+                      ? "bg-card"
+                      : "bg-redBgCard"
                   }  group-hover:bg-card flex items-center justify-center`}
                 >
                   <IoFastFood

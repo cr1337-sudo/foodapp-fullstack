@@ -51,7 +51,7 @@ module.exports = {
         lightTextGray: "#9ca0ab",
         rowBg: "rgba(255,131,0,0.05)",
         card: "rgba(256,256,256,0.8)",
-
+        redBgCard: "rgb(220,38,38)",
       },
       screens: {
         sm: "640px",

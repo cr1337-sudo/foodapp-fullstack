@@ -10,7 +10,7 @@ import { UseStateValue } from "../context/StateProvider";
 import { useState } from "react";
 
 const MainContainer = () => {
-  const [{ foodItems }, dispatch] = UseStateValue();
+  const [{ foodItems,  cartShow }, dispatch] = UseStateValue();
   const [scrollValue, setScrollValue] = useState(0);
 
   return (
@@ -47,7 +47,7 @@ const MainContainer = () => {
 
       <MenuContainer />
 
-      <CartContainer />
+      {/* {cartShow && <CartContainer />} */}
     </div>
   );
 };

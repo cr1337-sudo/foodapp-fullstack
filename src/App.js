@@ -1,14 +1,19 @@
 import { Route, Routes } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 import "./App.css";
-import { Header, CreateContainer, MainContainer } from "./components";
+import {
+  Header,
+  CreateContainer,
+  MainContainer,
+  CartContainer,
+} from "./components";
 import { UseStateValue } from "./context/StateProvider";
 import { getAllFoodItems } from "./utils/firebaseFunctions";
 import { useEffect } from "react";
 import { actionType } from "./context/reducer";
 
 function App() {
-  const [{ foodItems }, dispatch] = UseStateValue();
+  const [{ foodItems, cartShow }, dispatch] = UseStateValue();
   const fetchData = async () => {
     await getAllFoodItems().then((data) => {
       dispatch({
@@ -31,6 +36,8 @@ function App() {
             <Route path="/createItem" element={<CreateContainer />} />
           </Routes>
         </main>
+
+        {cartShow && <CartContainer />}
       </div>
     </AnimatePresence>
   );

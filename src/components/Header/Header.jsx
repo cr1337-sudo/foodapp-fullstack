@@ -12,7 +12,7 @@ import { useState } from "react";
 const Header = () => {
   const firebaseAuth = getAuth(app);
   const provider = new GoogleAuthProvider();
-  const [{ user }, dispatch] = UseStateValue();
+  const [{ user, cartShow, cartItems }, dispatch] = UseStateValue();
   const [isMenu, setIsMenu] = useState(false);
 
   const login = async () => {
@@ -28,6 +28,13 @@ const Header = () => {
     } else {
       setIsMenu(!isMenu);
     }
+  };
+
+  const showCart = () => {
+    dispatch({
+      type: actionType.SET_CART_SHOW,
+      cartShow: !cartShow,
+    });
   };
 
   const logout = () => {
@@ -62,10 +69,15 @@ const Header = () => {
               Service
             </li>
           </ul>
-          <div className="relative flex items-center justify-center">
+          <div
+            className="relative flex items-center justify-center"
+            onClick={() => showCart()}
+          >
             <MdShoppingBasket className="text-textColor text-2xl  cursor-pointer" />
             <div className="absolute -right-3 -top-1 w-5 h-5 rounded-full bg-red-600 flex items-center justify-center">
-              <p className="text-sm text-white font-semibold">1</p>
+              <p className="text-sm text-white font-semibold">
+                {cartItems && cartItems.length > 0 ? cartItems.length : "0"}
+              </p>
             </div>
           </div>
           <div className="relative">
@@ -110,6 +122,17 @@ const Header = () => {
           <motion.img src={Logo} className="w-8 object-cover" alt="Logo" />
           <p className="text-headingColor text-xl font-bold">City</p>
         </Link>
+        <div
+          className="relative flex items-center justify-center"
+          onClick={() => showCart()}
+        >
+          <MdShoppingBasket className="text-textColor text-2xl  cursor-pointer" />
+          <div className="absolute -right-3 -top-1 w-5 h-5 rounded-full bg-red-600 flex items-center justify-center">
+            <p className="text-sm text-white font-semibold">
+              {cartItems && cartItems.length > 0 ? cartItems.length : "0"}
+            </p>
+          </div>
+        </div>
         <motion.img
           whileTap={{ scale: 0.6 }}
           src={user ? user.photoURL : Avatar}

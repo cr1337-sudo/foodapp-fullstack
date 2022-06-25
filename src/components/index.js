@@ -6,6 +6,7 @@ import Loader from "./Loader/Loader";
 import RowContainer from "../containers/RowContainer";
 import MenuContainer from "../containers/MenuContainer";
 import CartContainer from "../containers/CartContainer";
+import CartItem from "../containers/CartItem";
 
 export {
   Header,
@@ -16,4 +17,5 @@ export {
   RowContainer,
   MenuContainer,
   CartContainer,
+  CartItem
 };

@@ -1,19 +1,42 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { MdShoppingBasket } from "react-icons/md";
 import { useRef } from "react";
 import NotFound from "../img/NotFound.svg";
+import { UseStateValue } from "../context/StateProvider";
+import { actionType } from "../context/reducer";
 
 const RowContainer = ({ scrollValue, flag, data }) => {
+  const [{ cartItems }, dispatch] = UseStateValue();
+  const [items, setItems] = useState(cartItems);
+
   const rowContainer = useRef(null);
   useEffect(() => {
     rowContainer.current.scrollLeft += scrollValue;
   }, [scrollValue]);
 
+  useEffect(() => {
+    addToCart();
+  }, [items]);
+
+  const addToCart = () => {
+    dispatch({
+      type: actionType.SET_CART_ITEMS,
+      cartItems: items,
+    });
+    localStorage.setItem("cartItems", JSON.stringify(items));
+  };
+
+  const handleCart = (item) => {
+    if (!cartItems.filter((i) => i.id == item.id).length > 0) {
+      setItems([...items, item]);
+    }
+  };
+
   return (
     <div
       ref={rowContainer}
-      className={`w-full  my-12   flex items-center gap-3 scroll-smooth ${
+      className={`w-full  my-12  flex items-center gap-3 scroll-smooth ${
         flag
           ? "overflow-x-scroll scrollbar-none"
           : "overflow-x-hidden flex flex-wrap"
@@ -22,8 +45,8 @@ const RowContainer = ({ scrollValue, flag, data }) => {
       {data && data.length > 0 ? (
         data.map((item) => (
           <div
-            className=" w-300 md:w-340  h-[240px] my-12  rounded-lg p-2 shadow-md backdrop-blur-lg hover:shadow-lg
-            flex flex-col items-center justify-between
+            className=" md:w-275 w-150 md:h-[240px] h-44 mt-12 rounded-lg p-2 shadow-md backdrop-blur-lg hover:shadow-lg
+            flex flex-col items-center justify-between  flex-wrap
             "
             key={item.id}
           >
@@ -32,11 +55,12 @@ const RowContainer = ({ scrollValue, flag, data }) => {
                 whileHover={{ scale: 1.15 }}
                 src={item.imageUrl}
                 alt=""
-                className="w-40 -mt-8 drop-shadow-2xl"
+                className="w-24 md:w-40 -mt-8 drop-shadow-2xl"
               />
               <motion.div
                 whileTap={{ scale: 0.75 }}
                 className="w-8 h-8 rounded-full bg-red-600 flex justify-center items-center cursor cursor-pointer"
+                onClick={() => handleCart(item)}
               >
                 <MdShoppingBasket className=" text-white" />
               </motion.div>
