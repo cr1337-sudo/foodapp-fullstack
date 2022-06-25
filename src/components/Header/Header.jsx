@@ -1,7 +1,7 @@
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { app } from "../../firebase.config";
 import { motion } from "framer-motion";
-import Logo from "../../img/logo.png";
+// import Logo from "../../img/logo.png";
 import Avatar from "../../img/avatar.png";
 import { MdShoppingBasket, MdAdd, MdLogout } from "react-icons/md";
 import { Link } from "react-router-dom";
@@ -10,6 +10,7 @@ import { actionType } from "../../context/reducer";
 import { useState } from "react";
 
 const Header = () => {
+  const Logo = "https://cdn-icons-png.flaticon.com/512/5141/5141534.png";
   const firebaseAuth = getAuth(app);
   const provider = new GoogleAuthProvider();
   const [{ user, cartShow, cartItems }, dispatch] = UseStateValue();
@@ -46,12 +47,12 @@ const Header = () => {
     });
   };
   return (
-    <header className="fixed z-50 w-full  p-6 px-16 sm:px-4 bg-gray-100 shadow-lg">
+    <header className="fixed z-50 w-full  py-6 md:px-16 sm:px-4 bg-gray-100 shadow-lg">
       {/* Desktop & Tablet */}
       <div className="hidden md:flex w-full h-full items-center justify-between">
         <Link to={"/"} className="flex items-center gap-2">
           <motion.img src={Logo} className="w-8 object-cover" alt="Logo" />
-          <p className="text-headingColor text-xl font-bold">City</p>
+          <p className="text-headingColor text-xl font-bold">My food app</p>
         </Link>
 
         <div className="flex gap-8">
@@ -117,10 +118,10 @@ const Header = () => {
         </div>
       </div>
       {/*  mobile*/}
-      <div className="md:hidden flex  justify-between items-center w-full h-full p-0">
+      <div className="md:hidden flex  justify-around items-center w-full h-full p-0">
         <Link to={"/"} className="flex items-center gap-2">
           <motion.img src={Logo} className="w-8 object-cover" alt="Logo" />
-          <p className="text-headingColor text-xl font-bold">City</p>
+          <p className="text-headingColor text-xl font-bold">Food app</p>
         </Link>
         <div
           className="relative flex items-center justify-center"
